@@ -2,8 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  
+function generatePassword() {
   // This will start if the generate button is pushed.
   if(generateBtn = true)
   {
@@ -63,26 +62,41 @@ function writePassword() {
         case false:
           break;
       }
-
-      console.log(final);
-
     }
     
-    
-
-
     password = final.join("");
-    console.log(password);
+    
     
     
   }
   
+  charset = password;
+  retVal = "";
+  for (var i = 0, n = charset.length; i < pwLength; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
+}
+
+function writePassword() 
+{
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
+
+// function getRandomLower() {
+//   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+//  }
+//  function getRandomUpper() {
+//   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+//  }
+//  function getRandomNumber() {
+//   return String.fromCharCode(Math.floor(Math.random() *10) + 48)
+//  }
+//  function getRandomSymbol() {
+//  }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
