@@ -7,89 +7,76 @@ function writePassword() {
   // This will start if the generate button is pushed.
   if(generateBtn = true)
   {
-    var length = window.prompt("How many characters would you like your password to be? (8-128 characters)")
+    var pwLength = window.prompt("How many characters would you like your password to be? (8-128 characters)")
 
     // This will determine whether the length input meets parameters.
-    if(length < 8 || length > 128)
+    if(pwLength < 8 || pwLength > 128)
     {
-      length = window.prompt("Password must be between 8-128 characters. How many characters do you want your password to be?")
+      pwLength = window.prompt("Password must be between 8-128 characters. How many characters do you want your password to be?")
     }
 
     // Asks user if they want special characters.
-    var specialCharacters = window.prompt("Do you want your password to have special characters? Y/N")
+    var specialCharacters = window.confirm("Do you want your password to have special characters? Y/N")
+    var upperCase = window.confirm("Do you want to have uppercase letters in your password? Y/N")
+    var lowerCase = window.confirm("Do you want your password to have lowercase letters? Y/N")
+    var number = window.confirm("Do you want numbers included in your password? Y/N")
 
-    if(specialCharacters.toUpperCase === "Y" || specialCharacters.toUpperCase === "N")
+    if(!(specialCharacters) && !(upperCase) && !(lowerCase) && !(number))
     {
-      if(specialCharacters.toUpperCase === "Y")
-      {
-        specialCharacters = true;
-      }else
-      {
-        specialCharacters = false;
-      }
+      window.alert("You must click ok for one of the four options to generate a password")
     }else
     {
-      specialCharacters = window.prompt("Please only use Y or N for response. Do you want special characaters in your password?")
-      if(specialCharacters.toUpperCase === "Y")
+      var final = [];
+      switch(specialCharacters)
       {
-        specialCharacters = true;
-      }else
-      {
-        specialCharacters = false;
+        case true:
+          var characters = ["!", "@", "#", "$", "%", "&", "*"];
+          final = final.concat(characters);
+          break;
+        case false:
+          break;
       }
+      switch(upperCase)
+      {
+        case true:
+          var lettersUp = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+          final = final.concat(lettersUp);
+          break;
+        case false:
+          break;
+      }
+      switch(lowerCase)
+      {
+        case true:
+          var lettersLow = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+          final = final.concat(lettersLow);
+          break;
+        case false:
+          break;
+      }
+      switch(number)
+      {
+        case true:
+          var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+          final = final.concat(numbers);
+          break;
+        case false:
+          break;
+      }
+
+      console.log(final);
+
     }
     
-    var upperCase = window.prompt("Do you want to have uppercase letters in your password? Y/N")
-
-    if(upperCase.toUpperCase === "Y" || upperCase.toUpperCase === "N")
-    {
-      if(upperCase.toUpperCase === "Y")
-      {
-        upperCase = true;
-      }else
-      {
-        upperCase = false;
-      }
-    }else
-    {
-      upperCase = window.prompt("Please only use Y or N for response. Do you want special characaters in your password?")
-      if(upperCase.toUpperCase === "Y")
-      {
-        upperCase = true;
-      }else
-      {
-        upperCase = false;
-      }
-    }
-
-    var lowerCase = window.prompt("Do you want your password to have lowercase letters? Y/N")
-
-    if(lowerCase.toUpperCase === "Y" || lowerCase.toUpperCase === "N")
-    {
-      if(lowerCase.toUpperCase === "Y")
-      {
-        lowerCase = true;
-      }else
-      {
-        lowerCase = false;
-      }
-    }else
-    {
-      lowerCase = window.prompt("Please only use Y or N for response. Do you want special characaters in your password?")
-      if(lowerCase.toUpperCase === "Y")
-      {
-        lowerCase = true;
-      }else
-      {
-        lowerCase = false;
-      }
-    }
-
     
 
+
+    password = final.join("");
+    console.log(password);
+    
+    
   }
   
-
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
