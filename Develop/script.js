@@ -1,29 +1,40 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+// Generates password to display to user
 function generatePassword() {
-  // This will start if the generate button is pushed.
+  
+  // Starts if generate password button is pushed
   if(generateBtn = true)
   {
     var pwLength = window.prompt("How many characters would you like your password to be? (8-128 characters)")
 
-    // This will determine whether the length input meets parameters.
-    if(pwLength < 8 || pwLength > 128)
+    // Verification of whether the user is entering a number or a character. Will only generate if it is a number.
+    if(!(parseInt(pwLength)))
+    {
+      window.alert("The length must be a number between 8-128.")
+    }
+    else
+    {
+      // Determines whether input number is between 8 & 128 characters. If it is not, it will re-prompt the user for the length
+      if(pwLength < 8 || pwLength > 128)
     {
       pwLength = window.prompt("Password must be between 8-128 characters. How many characters do you want your password to be?")
     }
 
-    // Asks user if they want special characters.
-    var specialCharacters = window.confirm("Do you want your password to have special characters? Y/N")
-    var upperCase = window.confirm("Do you want to have uppercase letters in your password? Y/N")
-    var lowerCase = window.confirm("Do you want your password to have lowercase letters? Y/N")
-    var number = window.confirm("Do you want numbers included in your password? Y/N")
+    // Asks user if they want certain parameters in their password
+    var specialCharacters = window.confirm("Do you want your password to have special characters?")
+    var upperCase = window.confirm("Do you want to have uppercase letters in your password?")
+    var lowerCase = window.confirm("Do you want your password to have lowercase letters?")
+    var number = window.confirm("Do you want numbers included in your password?")
 
+    // If the user does not choose any of the special parameters, it will advise them that they have to choose at least one.
     if(!(specialCharacters) && !(upperCase) && !(lowerCase) && !(number))
     {
       window.alert("You must click ok for one of the four options to generate a password")
     }else
+    
+    // Each switch determines whether or not the user chose to include the parameter in their password. If they did, it adds that set of characters to the array.
     {
       var final = [];
       switch(specialCharacters)
@@ -64,17 +75,24 @@ function generatePassword() {
       }
     }
     
+    // Joins all chosen parameters in one string of characters without comma or spaces.
     password = final.join("");
     
     
-    
+   
+    }
   }
   
+  // Sends joined characters into the charset to randomize the final password
   charset = password;
   retVal = "";
+
+  // Chooses random parts of the charset given the length of the password user chose to begin with
   for (var i = 0, n = charset.length; i < pwLength; ++i) {
       retVal += charset.charAt(Math.floor(Math.random() * n));
   }
+
+  // Returns final password to write to the text box.
   return retVal;
 }
 
@@ -85,18 +103,6 @@ function writePassword()
   passwordText.value = password;
 
 }
-
-// function getRandomLower() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-//  }
-//  function getRandomUpper() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-//  }
-//  function getRandomNumber() {
-//   return String.fromCharCode(Math.floor(Math.random() *10) + 48)
-//  }
-//  function getRandomSymbol() {
-//  }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
