@@ -8,7 +8,7 @@ What I have created is a password generator that allows you to completely random
 
 ## GitHub Repository
 
-[Repository](https://github.com/moagermo/Password-Generator).
+[Repository](https://github.com/moagermo/Password-Generator)
 
 ## Deployed Project 
 
